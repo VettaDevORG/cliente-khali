@@ -1,0 +1,293 @@
+@import "tailwindcss";
+
+/*
+ * Brand colors come from the ficha as CSS variables set on <html> by the layout (see lib/theme.ts), and the
+ * design tokens of the preset (radius, spacing, heading weight, soft background, shadow, motion) the same way
+ * (see lib/presets.ts). `@theme inline` makes the utilities point at those variables, so bg-primary and
+ * rounded-card follow the client and the preset without touching any component.
+ */
+@theme inline {
+  --color-primary: var(--brand-primary);
+  --color-primary-dark: var(--brand-primary-dark);
+  --color-primary-light: var(--brand-primary-light);
+  --color-primary-fg: var(--brand-primary-fg);
+  --color-primary-text: var(--brand-primary-text);
+  --color-secondary: var(--brand-secondary);
+  --color-secondary-dark: var(--brand-secondary-dark);
+  --color-secondary-light: var(--brand-secondary-light);
+  --color-secondary-fg: var(--brand-secondary-fg);
+  --color-secondary-text: var(--brand-secondary-text);
+  --color-soft: var(--kit-soft-bg);
+
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
+
+  --radius-card: var(--kit-radius-card);
+  --radius-btn: var(--kit-radius-btn);
+  --radius-media: var(--kit-radius-media);
+  --shadow-card: var(--kit-card-shadow);
+}
+
+@theme {
+  --color-bg: #fafaf9;
+  --color-surface: #ffffff;
+  --color-surface-2: #f3f4f6;
+  --color-ink: #111827;
+  --color-ink-2: #4b5563;
+  /* Muted text: passes AA (≥ 4.8:1) on white, on the page surfaces and on the brand tints. */
+  --color-ink-3: #5f6673;
+  --color-line: #e5e7eb;
+  --color-ok: #15803d;
+  /* WhatsApp green, darkened so white text passes AA. */
+  --color-wa: #1a7f45;
+  --color-wa-dark: #0f6e33;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Sticky header height, so anchor links land below it. */
+  scroll-padding-top: 5rem;
+
+  /* Preset tokens: the layout overrides these inline; the values here are the "sereno" preset. */
+  --kit-radius-card: 1.25rem;
+  --kit-radius-btn: 9999px;
+  --kit-radius-media: 1.5rem;
+  --kit-section-y-sm: 4rem;
+  --kit-section-y: 6rem;
+  --kit-heading-weight: 600;
+  --kit-heading-tracking: -0.015em;
+  --kit-soft-bg: #f3f4f6;
+  --kit-card-shadow: 0 0 0 0 transparent;
+  --kit-reveal-y: 10px;
+  --kit-reveal-duration: 0.55s;
+  --kit-hover-lift: -2px;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/* Display headings (h1, section titles): weight and tracking come from the preset. */
+.display {
+  font-weight: var(--kit-heading-weight);
+  letter-spacing: var(--kit-heading-tracking);
+  line-height: 1.08;
+}
+
+/* Section padding from the preset. */
+.section-y {
+  padding-top: var(--kit-section-y-sm);
+  padding-bottom: var(--kit-section-y-sm);
+}
+@media (min-width: 640px) {
+  .section-y {
+    padding-top: var(--kit-section-y);
+    padding-bottom: var(--kit-section-y);
+  }
+}
+
+::selection {
+  background-color: var(--color-primary-light);
+  color: var(--color-ink);
+}
+
+input,
+textarea,
+select {
+  caret-color: var(--color-primary);
+}
+
+@layer base {
+  :focus-visible {
+    outline: 3px solid var(--color-primary-text);
+    outline-offset: 2px;
+  }
+}
+
+/* ---------- Motion ----------
+ * Reveal on scroll: elements with [data-reveal] start slightly lower and transparent and settle when they enter the
+ * viewport (components/Reveal.tsx adds data-inview). The distance and duration come from the preset motion level;
+ * "none" sets them to zero, so nothing moves. --i staggers siblings. Without JavaScript nothing is hidden.
+ */
+html[data-motion] [data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--kit-reveal-y));
+  transition:
+    opacity var(--kit-reveal-duration) var(--ease-out),
+    transform var(--kit-reveal-duration) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+html[data-motion] [data-reveal][data-inview] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero entrance: one orchestrated sequence on load, children delayed by --i. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--kit-reveal-y) + 6px));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+html[data-motion] .rise {
+  animation: rise var(--kit-reveal-duration) var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 90ms);
+}
+
+/* Slow zoom for a photo that bleeds behind text (hero 03). */
+@keyframes kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+html[data-motion="lively"] .kenburns {
+  animation: kenburns 18s ease-out both;
+}
+
+/* Soft color glows drifting behind a hero. */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(3%, -4%, 0) scale(1.06);
+  }
+}
+html[data-motion] .drift {
+  animation: drift 14s ease-in-out infinite;
+}
+html[data-motion] .drift-slow {
+  animation: drift 22s ease-in-out infinite reverse;
+}
+
+/* Hover lift for cards and photos; the amount comes from the motion level. */
+.lift {
+  transition:
+    transform 0.25s var(--ease-out),
+    box-shadow 0.25s var(--ease-out);
+}
+@media (hover: hover) {
+  .lift:hover {
+    transform: translateY(var(--kit-hover-lift));
+  }
+}
+
+/* Image that zooms slightly inside its frame on hover (gallery, service cards). */
+.zoom-media img {
+  transition: transform 0.6s var(--ease-out);
+}
+@media (hover: hover) {
+  html[data-motion] .zoom-media:hover img {
+    transform: scale(1.04);
+  }
+}
+
+/* Text links with an underline that draws from the left. */
+.link-draw {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 0% 1.5px;
+  background-position: 0 100%;
+  transition: background-size 0.3s var(--ease-out);
+  padding-bottom: 2px;
+}
+.link-draw:hover,
+.link-draw:focus-visible {
+  background-size: 100% 1.5px;
+}
+
+/* Decorative backgrounds, all CSS: no requests. */
+.bg-dots {
+  background-image: radial-gradient(color-mix(in srgb, var(--brand-primary) 14%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.bg-grid {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--brand-primary) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--brand-primary) 8%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.mask-fade-b {
+  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+}
+
+/* Horizontal strips (gallery 03): hide the scrollbar but keep it scrollable. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  html[data-motion] [data-reveal] {
+    transform: none;
+    transition-duration: 0.2s;
+    transition-delay: 0s;
+  }
+  html[data-motion] .rise {
+    animation-duration: 0.2s;
+    animation-delay: 0s;
+    transform: none;
+  }
+  .kenburns,
+  .drift,
+  .drift-slow {
+    animation: none !important;
+  }
+  .lift:hover,
+  .zoom-media:hover img {
+    transform: none !important;
+  }
+}
+
+/* Long text: legal pages and service pages. */
+.prose-basic h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+.prose-basic p,
+.prose-basic li {
+  color: var(--color-ink-2);
+  line-height: 1.7;
+}
+.prose-basic p {
+  margin-bottom: 0.75rem;
+}
+.prose-basic ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+.prose-basic a {
+  color: var(--color-primary-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

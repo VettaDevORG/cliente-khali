@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "slug": "khali",
+  "trade_name": "Khali",
+  "generated_at": "2026-10-30",
+  "business": {
+    "description": "Peluquería canina en Madrid. Baño, corte y peinado para perros pequeños y grandes, con cita individual: cada mascota se atiende de una en una.",
+    "sector": "peluqueria-canina",
+    "language": "es",
+    "extra_languages": [],
+    "address": {
+      "street": "Calle Uruguay 17, 5.º B",
+      "postal_code": "28016",
+      "city": "Madrid",
+      "province": "Madrid",
+      "country": "ES"
+    },
+    "service_area": "Madrid",
+    "opening_hours": [
+      {
+        "days": "lun-vie",
+        "open": "09:00",
+        "close": "18:00"
+      },
+      {
+        "days": "sab",
+        "open": "10:00",
+        "close": "13:00"
+      }
+    ],
+    "holidays": [],
+    "phone": "+34 638 571 303",
+    "whatsapp": {
+      "number": "+34 638 571 303",
+      "prefilled_message": "Hola, quiero pedir cita para mi perro en Khali."
+    },
+    "public_email": "lucia.teixeira93@gmail.com",
+    "social": {
+      "instagram": null,
+      "facebook": null,
+      "linkedin": null,
+      "tiktok": null,
+      "google_business": null
+    },
+    "services": [
+      {
+        "id": "bano-pequeno",
+        "name": "Baño para perros pequeños",
+        "description": "Baño, secado y peinado básico para perros de hasta 10 kg.",
+        "price": 25,
+        "price_type": "fixed",
+        "duration_minutes": 60,
+        "bookable": true
+      },
+      {
+        "id": "bano-grande",
+        "name": "Baño para perros grandes",
+        "description": "Baño, secado y peinado básico para perros de más de 10 kg.",
+        "price": 35,
+        "price_type": "fixed",
+        "duration_minutes": 90,
+        "bookable": true
+      },
+      {
+        "id": "corte-pequeno",
+        "name": "Corte de pelo para perros pequeños",
+        "description": "Corte de pelo y peinado a medida para perros de hasta 10 kg.",
+        "price": 50,
+        "price_type": "fixed",
+        "duration_minutes": 60,
+        "bookable": true
+      },
+      {
+        "id": "corte-grande",
+        "name": "Corte de pelo para perros grandes",
+        "description": "Corte de pelo y peinado a medida para perros de más de 10 kg.",
+        "price": 60,
+        "price_type": "fixed",
+        "duration_minutes": 90,
+        "bookable": true
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿El precio cambia según el tamaño de mi perro?",
+        "answer": "Sí. Definimos si tu perro es pequeño o grande por el peso: pequeños hasta 10 kg y grandes a partir de 10 kg. En la lista de precios tienes las dos opciones de cada servicio."
+      },
+      {
+        "question": "¿Cómo pido cita?",
+        "answer": "Por WhatsApp o desde el formulario de esta web. Te damos cita según el hueco que haya en la agenda."
+      },
+      {
+        "question": "¿Mi perro estará con otros perros?",
+        "answer": "No. No solapamos citas: cuando llega tu mascota, la atendemos solo a ella."
+      },
+      {
+        "question": "¿Qué formas de pago aceptáis?",
+        "answer": "Tarjeta y Bizum."
+      },
+      {
+        "question": "¿Hacéis tintes?",
+        "answer": "No. Hacemos baño, corte y peinado; el tinte no entra en nuestros servicios."
+      }
+    ],
+    "testimonials": [],
+    "policies": {
+      "booking": "Por WhatsApp o desde el formulario de la web. Damos cita según el hueco que haya en la agenda.",
+      "cancellation": "Se puede cancelar sin coste.",
+      "payment": "Tarjeta y Bizum.",
+      "not_offered": "No hacemos tintes."
+    }
+  },
+  "identity": {
+    "about": "Khali es una peluquería canina en Madrid. Desde hace cinco años, Kerke, peluquero, y Carolina, estilista con formación en estilismo canino, bañan, cortan y peinan perros de todos los tamaños. No solapamos citas: cada mascota se atiende de una en una, con calma, y sale con el corte que necesita y que más le favorece.",
+    "mission": "Que tu perro salga guapo, tranquilo y bien cuidado, atendido de uno en uno.",
+    "values": [
+      "trato personalizado",
+      "cuidado"
+    ],
+    "audience": "Dueños de perros de Madrid que quieren un baño o un corte con trato cercano, sin que su mascota espere con otros perros.",
+    "personality": [
+      "cercano",
+      "cuidadoso",
+      "profesional"
+    ],
+    "differentiators": [
+      "Profesionales que cuidan a tu mascota",
+      "Atención personalizada",
+      "Sin solapar citas: cada perro se atiende de forma individual"
+    ],
+    "design": {
+      "direction": "Web clara y cálida que transmita cuidado y estilo: mucho aire, tipografía elegante en los títulos, verde salvia suave como base y el dorado solo en acentos. Fotos de perros en la peluquería con luz natural, nada de catálogo. El WhatsApp siempre a la vista.",
+      "mood": [
+        "confianza",
+        "estilismo"
+      ],
+      "references": [],
+      "avoid": [
+        "colores, y fotos (respuesta literal del cliente, sin concretar)"
+      ],
+      "imagery": "Banco de imágenes de peluquería canina: baño, secado y corte con luz natural y tonos claros. El cliente dice tener 5 fotos propias; cuando lleguen sustituyen a las de banco."
+    }
+  },
+  "brand": {
+    "logo": null,
+    "colors": {
+      "primary": "#5B7F67",
+      "secondary": "#C9A227"
+    },
+    "font": "c",
+    "tone": "tu",
+    "assistant_name": null
+  },
+  "legal": {
+    "owner": "LachoclaSA",
+    "tax_id": "123456",
+    "address": "Calle Uruguay 17, 5.º B, 28016 Madrid",
+    "privacy_email": "lucia.teixeira93@gmail.com",
+    "dpa_signed": null,
+    "health_data": false,
+    "professional_registry": {
+      "body": null,
+      "number": null
+    }
+  },
+  "web": {
+    "package": "landing",
+    "domain": "khalicanina.es",
+    "domain_registrar": "pendiente: se registra a nombre del cliente",
+    "domain_owned_by_client": true,
+    "email_provider": "Google",
+    "sections": [
+      "hero",
+      "services",
+      "how_we_work",
+      "about",
+      "faq",
+      "contact"
+    ],
+    "pages": [],
+    "form_recipients": [
+      "lucia.teixeira93@gmail.com"
+    ],
+    "ga4_measurement_id": null,
+    "search_console": false,
+    "google_business": false,
+    "photos": "stock",
+    "copy": {
+      "hero_title": "Peluquería canina en Madrid, con cita de uno en uno",
+      "hero_subtitle": "Baño, corte y peinado a la medida de tu perro. No solapamos citas: cuando llega tu mascota, solo estamos para ella.",
+      "why_us": "Cinco años cuidando perros en Madrid, trato personalizado y cada mascota atendida de forma individual.",
+      "how_we_work": [
+        {
+          "title": "Pedimos cita",
+          "text": "Escríbenos por WhatsApp o desde el formulario y buscamos hueco en la agenda para tu perro."
+        },
+        {
+          "title": "Te asesoramos",
+          "text": "Miramos su pelo y su raza y te proponemos el corte que necesita y el que más le favorece."
+        },
+        {
+          "title": "Baño, corte y peinado",
+          "text": "Trabajamos con tu mascota de forma individual, con calma y sin otros perros esperando."
+        },
+        {
+          "title": "Te la devolvemos feliz",
+          "text": "Con su nuevo look y lista para presumir."
+        }
+      ],
+      "about_title": "Quiénes somos"
+    },
+    "extras": [],
+    "primary_cta": "whatsapp",
+    "preset": "sereno",
+    "variants": {},
+    "motion": "calm",
+    "service_pages": false,
+    "redirects": []
+  },
+  "assets": {
+    "logo": null,
+    "hero": {
+      "src": "/client/img/hero.542ec7ab.webp",
+      "alt": "Cocker spaniel cepillado con un cardador junto a la ventana",
+      "width": 1600,
+      "height": 1068,
+      "credit": "Goochie Poochie Grooming, Pexels License"
+    },
+    "hero_video": null,
+    "about": {
+      "src": "/client/img/about.8306e53e.webp",
+      "alt": "Border collie sentado en una bañera de patas",
+      "width": 1600,
+      "height": 2195,
+      "credit": "Elina Volkova, Pexels License"
+    },
+    "gallery": [
+      {
+        "src": "/client/img/gallery-1.52ba63a9.webp",
+        "alt": "Yorkshire terrier asomado en una bañera blanca",
+        "width": 1600,
+        "height": 1067,
+        "caption": "Baño con champú suave",
+        "credit": "Adrian Frentescu, Pexels License"
+      },
+      {
+        "src": "/client/img/gallery-2.8306e53e.webp",
+        "alt": "Border collie sentado en una bañera de patas",
+        "width": 1600,
+        "height": 2195,
+        "caption": "Baño tranquilo, de uno en uno",
+        "credit": "Elina Volkova, Pexels License"
+      },
+      {
+        "src": "/client/img/gallery-3.baa0c905.webp",
+        "alt": "Caniche de pie en la mesa de peluquería, en una sala luminosa",
+        "width": 1600,
+        "height": 1068,
+        "caption": "Mesa de corte",
+        "credit": "Goochie Poochie Grooming, Pexels License"
+      },
+      {
+        "src": "/client/img/gallery-4.3afa4290.webp",
+        "alt": "Bulldog francés en el baño, sujetado con cuidado",
+        "width": 1600,
+        "height": 1068,
+        "caption": "Baño",
+        "credit": "David Kanigan, Pexels License"
+      },
+      {
+        "src": "/client/img/gallery-5.066ae96c.webp",
+        "alt": "Peine metálico sobre el pelo de un yorkshire",
+        "width": 1600,
+        "height": 1067,
+        "caption": "Peinado al detalle",
+        "credit": "Gustavo Fring, Pexels License"
+      },
+      {
+        "src": "/client/img/gallery-6.4c7ead43.webp",
+        "alt": "Peluquera cortando el pelo a un shih tzu sobre la mesa",
+        "width": 1600,
+        "height": 1068,
+        "caption": "Corte a tijera",
+        "credit": "Goochie Poochie Grooming, Pexels License"
+      }
+    ],
+    "services": {}
+  },
+  "team": [
+    {
+      "name": "Kerke",
+      "role": "Peluquero canino",
+      "bio": "Peluquero profesional."
+    },
+    {
+      "name": "Carolina",
+      "role": "Estilista canina",
+      "bio": "Peluquera con formación en estilismo canino."
+    }
+  ],
+  "fonts": {
+    "body": {
+      "family": "Inter Variable",
+      "src": "/client/fonts/inter-latin-wght-normal.woff2",
+      "weights": "100 900",
+      "fallback": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+    },
+    "heading": {
+      "family": "Fraunces Variable",
+      "src": "/client/fonts/fraunces-latin-wght-normal.woff2",
+      "weights": "100 900",
+      "fallback": "Georgia, Times New Roman, serif"
+    }
+  }
+}
