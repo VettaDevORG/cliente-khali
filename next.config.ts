@@ -4,9 +4,10 @@ import { join } from "node:path";
 
 /**
  * Reads client/site.json for the things that live in the config: redirects from the old site and the
- * analytics id for the Content-Security-Policy. The kit without an active client still builds.
+ * analytics id for the Content-Security-Policy, and the status: only a delivered site is indexable. The kit without
+ * an active client still builds.
  */
-type SiteLite = { web?: { redirects?: { from: string; to: string }[]; ga4_measurement_id?: string | null } };
+type SiteLite = { status?: string; web?: { redirects?: { from: string; to: string }[]; ga4_measurement_id?: string | null } };
 
 function readSite(): SiteLite {
   const file = join(process.cwd(), "client", "site.json");
@@ -20,6 +21,7 @@ function readSite(): SiteLite {
 
 const site = readSite();
 const analytics = Boolean(site.web?.ga4_measurement_id);
+const indexable = site.status === "delivered";
 
 const csp = [
   "default-src 'self'",
@@ -43,6 +45,8 @@ const securityHeaders = [
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
   { key: "Content-Security-Policy", value: csp },
+  // Previews and samples: the meta tag in the page says the same, this covers images and files too.
+  ...(indexable ? [] : [{ key: "X-Robots-Tag", value: "noindex, nofollow" }]),
 ];
 
 const nextConfig: NextConfig = {

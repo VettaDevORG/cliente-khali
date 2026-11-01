@@ -8,12 +8,13 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import JsonLd from "@/components/JsonLd";
 import Reveal from "@/components/Reveal";
+import SampleBanner from "@/components/SampleBanner";
 import StickyCta from "@/components/StickyCta";
 import { fontCssVars, fontFaceCss } from "@/lib/fonts";
 import { buildCta, buildNav, secondaryCta } from "@/lib/nav";
 import { getPreset, motionCssVars, presetCssVars, resolveMotion } from "@/lib/presets";
 import { baseMetadata, localBusinessSchema, websiteSchema } from "@/lib/seo";
-import { getSite, getT } from "@/lib/site";
+import { getSite, getT, isSample } from "@/lib/site";
 import { derivePalette, paletteToCssVars } from "@/lib/theme";
 
 export function generateMetadata(): Metadata {
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {t.skipToContent}
         </a>
         <JsonLd data={[localBusinessSchema(site), websiteSchema(site)]} />
+        {isSample(site) && <SampleBanner />}
         <Header
           logo={site.assets.logo}
           name={site.trade_name}

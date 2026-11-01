@@ -1,4 +1,9 @@
 import { z } from "zod";
+import { isValidTaxId, normalizeTaxId } from "./taxid";
+
+/** Vettadev's own identification: a client ficha that carries it was filled from the template, not from the client. */
+const OWN_TAX_ID = "Z2519022K";
+const OWN_STREET = /uruguay,?\s*17/i;
 import { getPreset, PRESET_IDS } from "./presets";
 import { BLOCK_META, blockLabel, describeFallback, normalizeVariant, resolveVariant, type VariantCode } from "./variants";
 
@@ -259,11 +264,18 @@ export const ProductsWebSchema = z.object({
   redirects: z.array(z.object({ from: z.string(), to: z.string() })).default([]),
 });
 
+/**
+ * Where the client is in the process (vettadev-ops/clientes/README.md). The site reads it too: only "delivered" is
+ * indexable, and "sample" marks a fictitious business published as a showcase.
+ */
+export const StatusSchema = z.enum(["onboarding", "building", "delivered", "churned", "sample"]);
+export type Status = z.infer<typeof StatusSchema>;
+
 export const FichaSchema = z
   .object({
     schema_version: z.literal(1),
     slug: slugString,
-    status: z.enum(["onboarding", "building", "delivered", "churned"]).optional(),
+    status: StatusSchema.optional(),
     company: CompanySchema,
     business: BusinessSchema,
     identity: IdentitySchema,
@@ -305,6 +317,7 @@ export type FontFace = z.infer<typeof FontFaceSchema>;
 export const SiteConfigSchema = z.object({
   schema_version: z.literal(1),
   slug: slugString,
+  status: StatusSchema.default("building"),
   trade_name: z.string(),
   generated_at: isoDate,
   business: BusinessSchema,
@@ -462,6 +475,20 @@ export function webIssues(ficha: Ficha): Issue[] {
   const ids = new Set(ficha.business.services.map((s) => s.id));
   for (const id of Object.keys(web.copy.services ?? {})) if (!ids.has(id)) err(`products.web.copy.services.${id}`, "no hay ningún servicio con ese id");
   for (const id of Object.keys(web.images.services ?? {})) if (!ids.has(id)) err(`products.web.images.services.${id}`, "no hay ningún servicio con ese id");
+
+  // Status drives indexing (src/lib/site.ts) and the checks that only make sense for a real client.
+  const status = ficha.status ?? "building";
+  if (!ficha.status) warn("status", 'sin status; se trata como "building": la web sale con noindex hasta que sea "delivered"');
+  if (status === "sample") {
+    if (!web.domain.endsWith(".netlify.app")) warn("products.web.domain", "una muestra se publica en un subdominio de Netlify, no en un dominio de cliente");
+    if (web.ga4_measurement_id) warn("products.web.ga4_measurement_id", "una muestra no lleva analítica del cliente");
+  } else {
+    if (!isValidTaxId(ficha.legal.tax_id)) err("legal.tax_id", `"${ficha.legal.tax_id}" no es un NIF, NIE o CIF válido (letra de control); no se puede publicar en el aviso legal`);
+    if (normalizeTaxId(ficha.legal.tax_id) === OWN_TAX_ID) err("legal.tax_id", "es el NIF de Vettadev, no el del cliente");
+    for (const [path, value] of [["legal.address", ficha.legal.address], ["business.address.street", ficha.business.address.street]] as const) {
+      if (OWN_STREET.test(value)) err(path, "es el domicilio de Vettadev, no el del cliente");
+    }
+  }
 
   const usesSection = (id: SectionId) =>
     web.package === "landing" ? web.sections.includes(id) : web.pages.some((p) => p.sections.includes(id));

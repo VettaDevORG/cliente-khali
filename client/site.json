@@ -1,8 +1,9 @@
 {
   "schema_version": 1,
   "slug": "khali",
+  "status": "sample",
   "trade_name": "Khali",
-  "generated_at": "2026-10-30",
+  "generated_at": "2026-11-01",
   "business": {
     "description": "Peluquería canina en Madrid. Baño, corte y peinado para perros pequeños y grandes, con cita individual: cada mascota se atiende de una en una.",
     "sector": "peluqueria-canina",
@@ -29,12 +30,12 @@
       }
     ],
     "holidays": [],
-    "phone": "+34 638 571 303",
+    "phone": "+34 676 899 463",
     "whatsapp": {
-      "number": "+34 638 571 303",
+      "number": "+34 676 899 463",
       "prefilled_message": "Hola, quiero pedir cita para mi perro en Khali."
     },
-    "public_email": "lucia.teixeira93@gmail.com",
+    "public_email": "info@vettadev.com",
     "social": {
       "instagram": null,
       "facebook": null,
@@ -155,7 +156,7 @@
     "owner": "LachoclaSA",
     "tax_id": "123456",
     "address": "Calle Uruguay 17, 5.º B, 28016 Madrid",
-    "privacy_email": "lucia.teixeira93@gmail.com",
+    "privacy_email": "info@vettadev.com",
     "dpa_signed": null,
     "health_data": false,
     "professional_registry": {
@@ -165,7 +166,7 @@
   },
   "web": {
     "package": "landing",
-    "domain": "khalicanina.es",
+    "domain": "samplevettadev.netlify.app",
     "domain_registrar": "pendiente: se registra a nombre del cliente",
     "domain_owned_by_client": true,
     "email_provider": "Google",
@@ -179,7 +180,7 @@
     ],
     "pages": [],
     "form_recipients": [
-      "lucia.teixeira93@gmail.com"
+      "info@vettadev.com"
     ],
     "ga4_measurement_id": null,
     "search_console": false,

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { Service, SiteConfig } from "./ficha";
 import { euro, fullAddress, splitList } from "./format";
 import { openingHoursSchema } from "./hours";
-import { servicePath, siteUrl } from "./site";
+import { isIndexable, servicePath, siteUrl } from "./site";
 
 export function baseMetadata(site: SiteConfig): Metadata {
   const name = site.trade_name;
@@ -11,7 +11,9 @@ export function baseMetadata(site: SiteConfig): Metadata {
     title: { default: `${name} · ${site.web.copy.hero_title}`, template: `%s | ${name}` },
     description: site.web.copy.hero_subtitle,
     applicationName: name,
-    robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+    robots: isIndexable(site)
+      ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } }
+      : { index: false, follow: false, googleBot: { index: false, follow: false } },
     openGraph: { type: "website", siteName: name, locale: "es_ES", url: siteUrl(site) },
     twitter: { card: "summary_large_image" },
     formatDetection: { telephone: true, email: true, address: true },

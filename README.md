@@ -1,6 +1,6 @@
 # Web de Khali
 
-Sitio web de Khali (khalicanina.es), paquete landing, generado el 30 de octubre de 2026 con el kit de webs de Vettadev.
+Sitio web de Khali (samplevettadev.netlify.app), paquete landing, generado el 1 de noviembre de 2026 con el kit de webs de Vettadev.
 
 ## Qué hay aquí
 
@@ -15,8 +15,8 @@ Escriba a Vettadev por WhatsApp al +34 676 899 463 o a info@vettadev.com con lo 
 ## Cómo funciona por dentro
 
 - La web se publica en Netlify a partir de este repositorio: cada cambio en la rama `main` se despliega solo.
-- El formulario de contacto lo gestiona Netlify Forms y llega a: lucia.teixeira93@gmail.com.
-- El botón de WhatsApp abre el +34 638 571 303 con un mensaje preparado. El de llamar marca el +34 638 571 303.
+- El formulario de contacto lo gestiona Netlify Forms y llega a: info@vettadev.com.
+- El botón de WhatsApp abre el +34 676 899 463 con un mensaje preparado. El de llamar marca el +34 676 899 463.
 - La analítica (Google Analytics 4) solo se carga si el visitante acepta las cookies.
 
 ## Para un desarrollador

@@ -30,6 +30,16 @@ export function getT(site: SiteConfig = getSite()): Strings {
   return getStrings(site.brand.tone);
 }
 
+/** Only a delivered site is indexable: previews on *.netlify.app and samples stay out of Google. */
+export function isIndexable(site: SiteConfig): boolean {
+  return site.status === "delivered";
+}
+
+/** A fictitious business published as a showcase: the site says so on every page. */
+export function isSample(site: SiteConfig): boolean {
+  return site.status === "sample";
+}
+
 export function siteUrl(site: SiteConfig, path = "/"): string {
   return `https://${site.web.domain}${path === "/" ? "" : path}`;
 }

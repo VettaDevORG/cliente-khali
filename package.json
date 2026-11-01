@@ -2,7 +2,7 @@
   "name": "cliente-khali",
   "version": "1.0.0",
   "private": true,
-  "description": "Web de Khali. Generada con vettadev-web-kit el 30 de octubre de 2026.",
+  "description": "Web de Khali. Generada con vettadev-web-kit el 1 de noviembre de 2026.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

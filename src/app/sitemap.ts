@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
-import { getSite, hasServicePages, innerPages, servicePath, siteUrl } from "@/lib/site";
+import { getSite, hasServicePages, innerPages, isIndexable, servicePath, siteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const site = getSite();
+  if (!isIndexable(site)) return [];
   const lastModified = new Date(site.generated_at);
   const entries: MetadataRoute.Sitemap = [{ url: siteUrl(site), lastModified, changeFrequency: "monthly", priority: 1 }];
   for (const p of innerPages(site)) {
